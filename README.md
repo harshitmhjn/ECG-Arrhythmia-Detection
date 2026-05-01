@@ -1,32 +1,81 @@
-# 🚀 ECG Classification using CNN-BiLSTM with Explainable AI (XAI)
+🚀 ECG Classification using CNN–BiLSTM with Explainable AI (XAI)
+📌 Overview
 
-## 📌 Overview
+This project presents a deep learning-based framework for multi-label ECG classification using a hybrid CNN–BiLSTM architecture, enhanced with Explainable AI (XAI) techniques.
 
-This project presents an end-to-end deep learning pipeline for **ECG signal classification** using a hybrid **CNN-BiLSTM architecture**, enhanced with **Explainable AI (XAI)** techniques.
+Unlike traditional black-box models, this system not only predicts cardiac abnormalities but also provides clinically meaningful interpretations by identifying important ECG signal regions such as P-waves, QRS complexes, and ST-T segments.
 
-The model is trained and evaluated on the **PTB-XL dataset**, a large-scale, clinically annotated ECG dataset. The system not only predicts cardiac conditions but also provides interpretability to support medical understanding.
+The model is trained and evaluated on the PTB-XL dataset, a large-scale, clinically annotated ECG dataset.
 
----
+🎯 Objectives
+Develop an accurate model for multi-label ECG classification
+Capture both spatial (morphological) and temporal features
+Improve model interpretability using XAI
+Align model explanations with clinical ECG knowledge
+🧠 Key Features
+📊 ECG signal preprocessing and normalization
+🏷️ Multi-label classification (NORM, MI, STTC, CD, HYP)
+🧩 CNN for feature extraction
+🔁 BiLSTM for temporal sequence learning
+📈 Performance evaluation using standard metrics
+🔍 Explainable AI (Grad-CAM, Integrated Gradients, Saliency)
+📉 Visualization of ECG signals and model outputs
+🏗️ Model Architecture
+CNN (Convolutional Neural Network) → Extracts morphological features
+BiLSTM (Bidirectional LSTM) → Captures temporal dependencies
+Fully Connected + Sigmoid Layer → Multi-label classification
+📊 Results
+🔹 Overall Performance
+Macro F1-score: 0.7194
+Macro AUROC: 0.9071
+Macro Average Precision: 0.7756
 
-## 🧠 Key Features
+👉 CNN–BiLSTM slightly outperforms baseline CNN, showing the importance of temporal modeling.
 
-* 📊 ECG signal preprocessing and normalization
-* 🏷️ Label mapping and multi-class classification
-* 🧩 CNN for spatial feature extraction
-* 🔁 BiLSTM for temporal sequence learning
-* 📈 Model training, evaluation, and performance metrics
-* 🔍 Explainable AI (XAI) for interpretability
-* 📉 Visualization of ECG signals and model outputs
+🔹 Per-Class Performance
+Class	F1 Score
+NORM	0.8529
+MI	0.7524
+STTC	0.7582
+CD	0.7568
+HYP	0.4765
+Best: NORM
+Improved: MI, CD
+Challenging: HYP (class imbalance)
+🔍 Key Findings
+Temporal modeling improves classification performance
+Model achieves high discriminative ability (AUROC > 0.90)
+Slight overfitting observed after later epochs
+Performance gap exists vs benchmark models
+🧠 XAI Insights (Core Contribution)
 
----
+The model focuses on clinically relevant ECG regions:
 
-## 📂 Project Structure
+QRS Complex → Myocardial Infarction (MI)
+RR Intervals → Conduction Disorders (CD)
+ST-T Segments → STTC
 
-```
-├── app.py                     # Streamlit web app
-├── inference.py              # Model inference script
-├── run_all.py                # Run full pipeline
+👉 This confirms the model is clinically interpretable, not just accurate
 
+📊 Detailed Evaluation Results
+Due to the large size of visual outputs, all evaluation results are available here:
+🔗 Google Drive (Full Evaluation Outputs):
+👉 https://drive.google.com/drive/folders/125h8Jg_mmaGSOpd_2UjBVfgxI72Bjs0x?usp=sharing
+
+📁 Contents:
+Evaluation Results:
+Confusion matrices, ROC curves, Precision-Recall curves
+XAI Visualizations:
+Grad-CAM, Integrated Gradients, Saliency maps
+Final Plots:
+Publication-ready figures
+Reports:
+Evaluation summaries and logs
+
+📂 Project Structure
+├── app.py
+├── inference.py
+├── run_all.py
 ├── part1_load_preprocess.py
 ├── part2_label_mapping.py
 ├── part3_data_split.py
@@ -37,138 +86,46 @@ The model is trained and evaluated on the **PTB-XL dataset**, a large-scale, cli
 ├── part8_evaluate.py
 ├── part9_xai.py
 ├── part10_save_and_plot.py
-
 ├── requirements.txt
 ├── README.md
-```
 
----
-
-## ⚙️ Installation
-
-```bash
-git clone https://github.com/your-username/ptbxl-cnn-bilstm-xai.git
+⚙️ Installation
+git clone https://github.com/harshitmhjn/ECG-Arrhythmia-Detection
 cd ptbxl-cnn-bilstm-xai
 pip install -r requirements.txt
-```
 
----
-
-## ▶️ How to Run
-
-### 🔹 Run complete pipeline
-
-```bash
+▶️ Usage
+🔹 Run full pipeline
 python run_all.py
-```
-
-### 🔹 Run inference
-
-```bash
+🔹 Run inference
 python inference.py
-```
-
-### 🔹 Run web app (optional)
-
-```bash
+🔹 Launch web app
 streamlit run app.py
-```
 
----
+📁 Dataset
 
-## 📁 Dataset
+Dataset used: PTB-XL (PhysioNet)
+🔗 https://physionet.org/content/ptb-xl/1.0.3/
 
-This project uses the PTB-XL dataset, a large publicly available ECG dataset provided by PhysioNet.
+📦 Details:
+~21,000 ECG records
+12-lead signals
+71 diagnostic labels
+Expert annotations
 
-### 🔗 Download Dataset:
+⚠️ Dataset not included due to size.
 
-https://physionet.org/content/ptb-xl/1.0.3/
-
-### 📦 Dataset Details:
-
-* ~21,000 clinical 12-lead ECG records
-* Multiple diagnostic classes (71 labels)
-* High-quality annotations by cardiologists
-
-### ⚠️ Important Note:
-
-The dataset is **not included in this repository** due to size limitations.
-
-### 📂 Setup Instructions:
-
-1. Download the dataset from the link above
-2. Extract the files
-3. Place them inside a folder named:
-
-```
-data/
-```
-
-(Optional) You may include a small subset of ECG samples in:
-
-```
-sample_ecgs/
-```
-
-for quick testing.
-
----
-
-## 🧠 Model Architecture
-
-* **CNN (Convolutional Neural Network)**
-  Extracts spatial features from ECG signals
-
-* **BiLSTM (Bidirectional Long Short-Term Memory)**
-  Captures temporal dependencies in ECG sequences
-
----
-
-## 📊 Evaluation Metrics
-
-* Accuracy
-* Precision
-* Recall
-* F1-Score
-
----
-
-## 🔍 Explainable AI (XAI)
-
-The project integrates XAI techniques to:
-
-* Highlight important ECG signal regions
-* Improve model transparency
-* Assist in medical interpretation
-
----
-
-## 📈 Results
-
-* Performance metrics stored in logs
-* Visualizations generated for:
-
-  * Training curves
-  * Confusion matrix
-  * XAI explanations
-
----
-
-## 🛠️ Requirements
-
-See `requirements.txt` for full dependencies.
-
----
-
-## 👨‍💻 Author
-
-Harshit
-
----
-
-## ⭐ Acknowledgment
-
-* PhysioNet for providing the dataset
-* Open-source community for tools and libraries
-
----
+📈 Future Work
+Improve performance on minority classes (HYP)
+Apply data balancing techniques
+Explore deeper architectures
+Clinical validation with real-world data
+👨‍💻 Authors
+Harshit Mahajan
+Harsh Raj
+Mridul Sharma
+Khalid Raza Khan
+Tejas Verma
+⭐ Acknowledgment
+PhysioNet for dataset
+Open-source community
