@@ -152,17 +152,17 @@ Class imbalance affects HYP performance
 No external clinical validation
 XAI methods provide approximations, not causal explanations
 
-##📈 Future Work
+## 📈 Future Work
 Improve performance on minority classes (HYP)
 Apply data balancing techniques (SMOTE, focal loss)
 Explore deeper architectures
 Clinical validation with real-world data
 
-##👨‍💻 Authors
+## 👨‍💻 Authors
 Harshit Mahajan
 Harsh Raj
 Mridul Sharma
 Khalid Raza Khan
 Tejas Verma
 
-## 📂 Project Structure
+
