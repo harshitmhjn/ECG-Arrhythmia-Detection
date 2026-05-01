@@ -159,10 +159,10 @@ Explore deeper architectures
 Clinical validation with real-world data
 
 ## 👨‍💻 Authors
-Harshit Mahajan
-Harsh Raj
-Mridul Sharma
-Khalid Raza Khan
+Harshit Mahajan,
+Harsh Raj,
+Mridul Sharma,
+Khalid Raza Khan,
 Tejas Verma
 
 
